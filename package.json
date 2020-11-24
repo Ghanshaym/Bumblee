@@ -6,21 +6,7 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ghanshaym/Bumblee.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Ghanshaym/Bumblee/issues"
-  },
-  "homepage": "https://github.com/Ghanshaym/Bumblee#readme",
   "dependencies": {
-    "@sendgrid/mail": "^7.4.0",
     "agenda": "^3.1.0",
     "apn": "^2.2.0",
     "bcrypt": "^5.0.0",
@@ -39,5 +25,19 @@
     "request": "^2.88.2",
     "socket.io": "^3.0.3",
     "twilio": "^3.52.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ghanshaym/Bumblee.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ghanshaym/Bumblee/issues"
+  },
+  "homepage": "https://github.com/Ghanshaym/Bumblee#readme"
 }
