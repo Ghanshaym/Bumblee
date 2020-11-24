@@ -31,5 +31,5 @@ connection.connect().then(success => {
     console.log('Db not connected!')
 });
 
-cronJob.startCronJobs();
+// cronJob.startCronJobs();
 
