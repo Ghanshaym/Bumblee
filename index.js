@@ -29,6 +29,7 @@ connection.connect().then(success => {
         console.log(success);
     });
 }).catch(error => {
+    console.log("err",error);
     console.log('Db not connected!')
 });
 
