@@ -8,7 +8,7 @@ const route = require('./route');
 const app = express();
 const morgan = require('morgan')
 // const socket = require('../server/sockets/index');
-const cronJob=require('../server/v1/cron/cronjobs');
+// const cronJob=require('../server/v1/cron/cronjobs');
 
 const server = require('http').createServer(app);
 app.use(bodyParser.json());
