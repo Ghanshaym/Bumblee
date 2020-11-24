@@ -22,6 +22,7 @@ app.use('/static', express.static(path.join(__dirname, '../server/uploads/')));
 //app.use(express.static((path.join(__dirname,"../server/swagger"))));
 // const io = require('socket.io')(server)
 // socket(io)
+
 connection.connect().then(success => {
   app.listen(3000, () => {
         console.log(`Running on port ${config.port}.`);
