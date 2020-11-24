@@ -13,7 +13,7 @@ var connect = function() {
     });
 };
 
-autoIncrement.initialize(mongoose);
+// autoIncrement.initialize(mongoose);
 module.exports = {
     connect: connect
 };
