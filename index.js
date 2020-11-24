@@ -20,8 +20,8 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static(path.join(__dirname, '../server/uploads/')));
 
 //app.use(express.static((path.join(__dirname,"../server/swagger"))));
-// const io = require('socket.io')(server)
-// socket(io)
+const io = require('socket.io')(server)
+socket(io)
 connection.connect().then(success => {
   server.listen(config.port, () => {
         console.log(`Running on port ${config.port}.`);
