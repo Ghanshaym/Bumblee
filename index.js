@@ -17,9 +17,10 @@ app.use(cors());
 app.use('/api', route);
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
-app.use('/static', express.static(path.join(__dirname, '../server/uploads/')));
 
-//app.use(express.static((path.join(__dirname,"../server/swagger"))));
+app.use('/static', express.static(path.join(__dirname+'/uploads')));
+
+app.use(express.static((path.join(__dirname,"../server/swagger"))));
 // const io = require('socket.io')(server)
 // socket(io)
 

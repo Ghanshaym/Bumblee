@@ -814,9 +814,16 @@ async function activeAdminCredentials(req, res) {
 async function addBorrower(req, res) {
     try {
         // const valid = await Validation.isSuperAdminValidate.validateAddAdmin(req);
-        // if (valid) {
-        //     return universalFunction.validationError(res, valid);
-        // }
+        for(let index in req.files){
+            req.files[index].map((currentFiles)=>{
+                if(currentFiles.fieldname == "adharCard"){
+                        req.body.aadhar = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                    }
+                    if(currentFiles.fieldname == "panCard"){
+                        req.body.panCard = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                })
+        }
         const emailUser = await Model.Borrower.findOne({
             email: req.body.email,
             isDeleted: false
@@ -833,9 +840,11 @@ async function addBorrower(req, res) {
             req.body.location = location
         }
         req.body.image = '';
-        if (req.file && req.file.filename) {
-            req.body.image = `${constant.FILE_PATH.USER}/${req.file.filename}`;
-        }
+        // if (req.file && req.file.filename) {
+        //     // req.body.image = `${constant.FILE_PATH.USER}/${req.file.filename}`;
+        //     req.body.image = `static/${req.file.filename}`;
+
+        // }
         req.body.adminId = req.admin._id
         let BorrowerData = await new Model.Borrower(req.body).save();
         let accessToken = await universalFunction.jwtSign(BorrowerData);

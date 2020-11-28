@@ -75,7 +75,8 @@ module.exports = {
     FILE_PATH:{
         ADMIN:'/static/admin',
         SUPER_ADMIN:'/static/super_admin',
-        USER:'/static/user'
+        USER:'/static/user',
+        BORROWER:'/static/borrowerImages'
     },
     SMS_EVENT_TYPE:{
         SEND_OTP:'SEND_OTP'

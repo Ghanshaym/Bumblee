@@ -50,7 +50,9 @@ router.post('/deleteAdmin', Authorization.isSuperAdminAuth, Upload.admin.single(
  *  BROWWER 
  */
 
-router.post('/addBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.addBorrower);
+// router.post('/addBorrower', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.addBorrower);
+router.post('/addBorrower', Authorization.isAdminAuthorization, Upload.borrower.fields([{ name: 'adharCard', maxCount: 1 },
+                                                                                        {name:"panCard",maxCount:1}  ]), Controller.superAdminController.addBorrower);
 router.post('/updateBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.updateBorrowerProfile);
 router.post('/adminAllBorrower', Authorization.isAdminAuthorization, Controller.superAdminController.adminAllBorrower);
 router.post('/deleteBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.updateBorrowerProfile);
@@ -59,7 +61,7 @@ router.post('/deleteBorrower', Authorization.isAdminAuthorization, Upload.admin.
 /**
  * ADD LOAD
  */
-router.post('/addLoan', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.loan);
+router.post('/addLoan', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.loan);
 router.post('/updateLoanByAdmin', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.updateLoan);
 router.post('/getBorowwerLoan', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.getBorrowerLoan);
 router.post('/deleteLoan', Authorization.isAdminAuthorization, Controller.superAdminController.deleteLoan);

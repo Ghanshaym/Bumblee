@@ -15,16 +15,16 @@ module.exports = async(req, res, next) => {
     try {
         if (req.headers && req.headers.authorization) {
             // const url=req.url;
-            console.log("url-------------",req.headers.authorization);
+            // console.log("url-------------",req.headers.authorization);
             const accessToken= req.headers.authorization;
             const decodeData=await universalFunction.jwtVerify(accessToken);
-            console.log('decoded',decodeData);
+            // console.log('decoded',decodeData);
                 if (!decodeData)  return universalFunction.forBiddenResponse(req,res);
 
                 let admin = await Model.Admin.findOne({_id:mongoose.Types.ObjectId(decodeData._id),
                     isDeleted:false,isBlocked:false});
                 if(admin){
-                    console.log('innnn');
+                    // console.log('innnn');
                     req.admin = admin;
                     next();
                     // return

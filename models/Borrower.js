@@ -33,6 +33,10 @@ const BorrowerModel = new Schema({
         type:String,
         default : ''
     },
+    panCard:{
+        type:String,
+        default : ''
+    },
     check:{
         type:String,
         default : ''
