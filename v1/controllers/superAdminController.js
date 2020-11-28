@@ -872,6 +872,16 @@ async function updateBorrowerProfile(req, res) {
         let bowworerData = await Model.Borrower.findOne({
             _id: req.body.BorrowerId
         });
+        for(let index in req.files){
+            req.files[index].map((currentFiles)=>{
+                if(currentFiles.fieldname == "adharCard"){
+                    setObj.aadhar = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                    }
+                    if(currentFiles.fieldname == "panCard"){
+                        setObj.panCard = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                })
+        }
         if (setObj.password) {
             let passwordValid = await universalFunction.comparePasswordUsingBcrypt(req.body.password, bowworerData.password);
             if (passwordValid) {
@@ -892,9 +902,7 @@ async function updateBorrowerProfile(req, res) {
                 return universalFunction.sendResponse(req, res, statusCode.BAD_REQUEST, messages.EMAIL_ALREDAY_EXIT);
         }
 
-        if (req.file && req.file.filename) {
-            setObj.image = `${constant.FILE_PATH.USER}/${req.file.filename}`;
-        }
+      
         await Model.Borrower.findOneAndUpdate({
             _id: req.body.BorrowerId
         }, {
