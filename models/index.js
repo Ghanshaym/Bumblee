@@ -22,5 +22,6 @@ module.exports = {
     SmsMessages : require('./SmsMessages'),
     Credentials : require('./Credentials'),
     Borrower : require('./Borrower'),
-    Loan : require('./loan')
+    Loan : require('./loan'),
+    Expances : require('./Expances'),
 };

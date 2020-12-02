@@ -11,6 +11,7 @@ const universalFunction = require('../../lib/universal-function');
 const appConstant = require("../../constant");
 const statusCodeList = require("../../statusCodes");
 const messageList = require("../../messages");
+const resMessages = require('../../langs/en')
 
 const constant = appConstant.constant;
 const statusCode = statusCodeList.statusCodes.STATUS_CODE;
@@ -51,6 +52,7 @@ exports.getPendingLoan =  getPendingLoan
 exports.getBorrowerLoan = getBorrowerLoan
 exports.deleteAdmin = deleteAdmin
 exports.deleteLoan = deleteLoan
+exports.addExpenses = addExpenses
     /*
     ADMIN API'S
     */
@@ -1034,6 +1036,18 @@ async function deleteLoan(req, res) {
        }
         let loanData = await  Model.Loan.findOneAndUpdate({_id:req.body.loanId},{isDeleted:true});
         return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.SUCCESSFULLY_DELETED);
+    } catch (error) {
+        console.log('error', error);
+        universalFunction.exceptionError(res);
+    }
+};
+async function addExpenses(req, res) {
+    try {
+
+        req.body.adminId = req.admin._id
+        console.log("dasd",req.admin._id);
+        let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
+        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,data:expences})
     } catch (error) {
         console.log('error', error);
         universalFunction.exceptionError(res);

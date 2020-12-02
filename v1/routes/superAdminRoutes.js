@@ -72,6 +72,11 @@ router.post('/updateLoanByAdmin', Authorization.isAdminAuthorization, Upload.adm
 router.post('/getBorowwerLoan', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.getBorrowerLoan);
 router.post('/deleteLoan', Authorization.isAdminAuthorization, Controller.superAdminController.deleteLoan);
 
+/****
+ * ADD EXPANCES
+ */
+
+router.post('/addExpanses', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.addExpenses);
 
 
 

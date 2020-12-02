@@ -8,6 +8,7 @@ const APP_MESSAGES = {
     SUCCESSFULLY_SEND_RESET_LINK: "Successfully send reset link in your email Id.",
     SUCCESSFULLY_UPDATED_PASSWORD: "Password has been successfully updated.",
     PROFILE_SUCCESSFULLY_UPDATED: "Profile has been successfully updated.",
+    EXPENSES_ADD_SUCESSFULLY:"Expences add sucessfully",
     DATABASE_ERROR: "Database error.",
     EMAIL_ALREDAY_VERIFIED: "Email already verified.",
     PLEASE_TRY_AGAIN: "Please try again.",
