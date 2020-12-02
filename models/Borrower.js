@@ -33,6 +33,18 @@ const BorrowerModel = new Schema({
         type:String,
         default : ''
     },
+    affaidavit:{
+        type:String,
+        default : ''
+    },
+    electricBill:{
+        type:String,
+        default : ''
+    },
+    check:{
+        type:String,
+        default:''
+    },
     panCard:{
         type:String,
         default : ''
