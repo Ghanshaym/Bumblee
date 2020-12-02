@@ -822,6 +822,15 @@ async function addBorrower(req, res) {
                     if(currentFiles.fieldname == "panCard"){
                         req.body.panCard = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
                      }
+                     if(currentFiles.fieldname == "affaidavit"){
+                        req.body.affaidavit = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                     if(currentFiles.fieldname == "electricBill"){
+                        req.body.electricBill = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                     if(currentFiles.fieldname == "check"){
+                        req.body.check = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
                 })
         }
         const emailUser = await Model.Borrower.findOne({
@@ -879,6 +888,15 @@ async function updateBorrowerProfile(req, res) {
                     }
                     if(currentFiles.fieldname == "panCard"){
                         setObj.panCard = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                     if(currentFiles.fieldname == "affaidavit"){
+                        setObj.affaidavit = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                     if(currentFiles.fieldname == "electricBill"){
+                        setObj.electricBill = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
+                     }
+                     if(currentFiles.fieldname == "check"){
+                        setObj.check = `${constant.FILE_PATH.BORROWER}/${currentFiles.filename}`; 
                      }
                 })
         }

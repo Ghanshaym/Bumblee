@@ -52,7 +52,12 @@ router.post('/deleteAdmin', Authorization.isSuperAdminAuth, Upload.admin.single(
 
 // router.post('/addBorrower', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.addBorrower);
 router.post('/addBorrower', Authorization.isAdminAuthorization, Upload.borrower.fields([{ name: 'adharCard', maxCount: 1 },
-                                                                                        {name:"panCard",maxCount:1}  ]), Controller.superAdminController.addBorrower);
+                                                                                        {name:"panCard",maxCount:1},
+                                                                                        {name:"affaidavit",maxCount:1},
+                                                                                        {name:"electricBill",maxCount:1},
+                                                                                        {name:"check",maxCount:1}
+
+                                                                                    ]), Controller.superAdminController.addBorrower);
 router.post('/updateBorrower', Authorization.isAdminAuthorization, Upload.borrower.fields([{ name: 'adharCard', maxCount: 1 },
 {name:"panCard",maxCount:1}  ]), Controller.superAdminController.updateBorrowerProfile);
 router.post('/adminAllBorrower', Authorization.isAdminAuthorization, Controller.superAdminController.adminAllBorrower);
