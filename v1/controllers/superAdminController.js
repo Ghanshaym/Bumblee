@@ -53,6 +53,7 @@ exports.getBorrowerLoan = getBorrowerLoan
 exports.deleteAdmin = deleteAdmin
 exports.deleteLoan = deleteLoan
 exports.addExpenses = addExpenses
+exports.dashBoard = dashBoard
     /*
     ADMIN API'S
     */
@@ -1048,6 +1049,27 @@ async function addExpenses(req, res) {
         console.log("dasd",req.admin._id);
         let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
         res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,data:expences})
+    } catch (error) {
+        console.log('error', error);
+        universalFunction.exceptionError(res);
+    }
+};
+async function dashBoard(req, res) {
+    try {
+
+        req.body.adminId = req.admin._id
+        console.log("dasd",req.admin._id);
+        const findBorrower = await Model.Borrower.find({})
+        const findAdmin = await Model.Admin.find({})
+        const findLoan = await Model.Loan.find({})
+        let loanAmount = 0
+        if(findLoan.length>0){
+            findLoan.map((obj)=>{
+                loanAmount += obj.principleAmount
+            })
+        }
+        // let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
+        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount})
     } catch (error) {
         console.log('error', error);
         universalFunction.exceptionError(res);

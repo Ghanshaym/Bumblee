@@ -77,6 +77,9 @@ router.post('/deleteLoan', Authorization.isAdminAuthorization, Controller.superA
  */
 
 router.post('/addExpanses', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.addExpenses);
+router.post('/dashBoard', Authorization.isAdminAuthorization, Upload.superAdmin.single('image'), Controller.superAdminController.addExpenses);
+
+router.post('/graph',Controller.superAdminController.dashBoard);
 
 
 
