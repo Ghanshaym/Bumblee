@@ -1106,27 +1106,26 @@ async function dashBoard(req, res) {
        
         if(totalAdminDetail.length>0){
             totalAdminDetail.map((obj)=>{
-                console.log("obj.email",obj.email);
-                earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
-                // earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
-                // if(obj.loans.length>0){
-                //     obj.loans.map((obj)=>{
-                //         if(obj.status=='pending'){
-                //             pendingLoan += obj.principleAmount
-                //         }
-                //         LoanAmount += obj.principleAmount
-                //     })
-                // }
-                // earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
-                // pendingLoan= 0
-                // LoanAmount = 0
-                // if(obj.expanses.length>0){
-                //     obj.expanses.map((obj)=>{
+               
+                earningByAdmin.push({email:obj.email,borrower:obj.borrowers.length})
+                if(obj.loans.length>0){
+                    obj.loans.map((obj)=>{
+                        if(obj.status=='pending'){
+                            pendingLoan += obj.principleAmount
+                        }
+                        LoanAmount += obj.principleAmount
+                    })
+                }
+                earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
+                pendingLoan= 0
+                LoanAmount = 0
+                if(obj.expanses.length>0){
+                    obj.expanses.map((obj)=>{
                        
-                //         expances += obj.price
-                //     })  
-                // }
-                // earningByAdmin.push({TotalExpanses :expances })
+                        expances += obj.price
+                    })  
+                }
+                earningByAdmin.push({TotalExpanses :expances })
             })
         }
         let loanAmount = 0
