@@ -54,6 +54,10 @@ exports.deleteAdmin = deleteAdmin
 exports.deleteLoan = deleteLoan
 exports.addExpenses = addExpenses
 exports.dashBoard = dashBoard
+exports.getExpenses = getExpenses
+exports.getAllExpenses = getAllExpenses
+exports.AdminPendingBorrower = AdminPendingBorrower
+exports.adminApprovedBorrower =adminApprovedBorrower
     /*
     ADMIN API'S
     */
@@ -1143,4 +1147,54 @@ async function dashBoard(req, res) {
         universalFunction.exceptionError(res);
     }
 };
+async function getExpenses(req, res) {
+    try {
+        req.body.adminId = req.admin._id
+        let ExpensesData = await  Model.Expenses.find({adminId:req.admin._id});
 
+        return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.FETCHED_SUCCESSFULLY, ExpensesData);
+    } catch (error) {
+        console.log('error', error);
+        universalFunction.exceptionError(res);
+    }
+};
+async function getAllExpenses(req, res) {
+    try {
+        let ExpensesData = await  Model.Expenses.find({}).populate('adminId');
+
+        return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.FETCHED_SUCCESSFULLY, ExpensesData);
+    } catch (error) {
+        console.log('error', error);
+        universalFunction.exceptionError(res);
+    }
+};
+async function adminApprovedBorrower(req, res) {
+    try {
+        let dataToSend = {};
+        let criteria = { isDeleted: false,isApproved:true,adminId:req.admin._id };
+        let skip = parseInt(req.body.pageNo - 1) || constant.DEFAULT_SKIP;
+        let limit = constant.DEFAULT_LIMIT;
+        skip = skip * limit;
+
+        const BorrowerData = await Model.Borrower.find(criteria).sort({ createdAt: -1 });
+        return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.SUCCESS, BorrowerData);
+    } catch (error) {
+        console.log('err', error);
+        universalFunction.exceptionError(res);
+    }
+};
+async function AdminPendingBorrower(req, res) {
+    try {
+        let dataToSend = {};
+        let criteria = { isDeleted: false,isApproved:false,adminId:req.admin._id };
+        let skip = parseInt(req.body.pageNo - 1) || constant.DEFAULT_SKIP;
+        let limit = constant.DEFAULT_LIMIT;
+        skip = skip * limit;
+
+        const BorrowerData = await Model.Borrower.find(criteria).sort({ createdAt: -1 });
+        return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.SUCCESS, BorrowerData);
+    } catch (error) {
+        console.log('err', error);
+        universalFunction.exceptionError(res);
+    }
+};

@@ -43,6 +43,10 @@ router.post('/addAdminCredentials', Authorization.isSuperAdminAuth, Controller.s
 router.post('/addAdminAppSetting', Authorization.isSuperAdminAuth, Controller.superAdminController.addAdminAppSetting)
 router.post('/updateLoanBySuperAdmin', Authorization.isSuperAdminAuth, Upload.admin.single('image'), Controller.superAdminController.updateLoan);
 router.post('/deleteAdmin', Authorization.isSuperAdminAuth, Upload.admin.single('image'), Controller.superAdminController.deleteAdmin);
+router.get('/getExpenses', Authorization.isAdminAuthorization, Controller.superAdminController.getExpenses);
+router.get('/getAdminVerifiedBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.superAminApprovedBorrower);
+router.get('/getAdminPendingBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.AdminPendingBorrower);
+router.get('/getAdminApprovedBorrower', Authorization.isAdminAuthorization, Upload.admin.single('image'), Controller.superAdminController.adminApprovedBorrower);
 
 
 
