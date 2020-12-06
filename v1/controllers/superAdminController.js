@@ -1101,8 +1101,8 @@ async function dashBoard(req, res) {
 
         ])
         let  earningByAdmin = [] , admin , pendingLoan = 0 ,LoanAmount =0 , expances = 0
-        console.log("totalAdminDetail",totalAdminDetail);
-        console.log("totalAdminDetail",totalAdminDetail.length);
+        // console.log("totalAdminDetail",totalAdminDetail);
+        // console.log("totalAdminDetail",totalAdminDetail.length);
         totalAdminDetail.map((demo)=>{
             console.log("demo",demo);
         })
