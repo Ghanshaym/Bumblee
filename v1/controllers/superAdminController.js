@@ -58,10 +58,26 @@ exports.getExpenses = getExpenses
 exports.getAllExpenses = getAllExpenses
 exports.AdminPendingBorrower = AdminPendingBorrower
 exports.adminApprovedBorrower =adminApprovedBorrower
+exports.superAminApprovedBorrower = superAminApprovedBorrower
     /*
     ADMIN API'S
     */
 
+   async function superAminApprovedBorrower(req, res) {
+    try {
+        let dataToSend = {};
+        let criteria = { isDeleted: false,isApproved:true };
+        let skip = parseInt(req.body.pageNo - 1) || constant.DEFAULT_SKIP;
+        let limit = constant.DEFAULT_LIMIT;
+        skip = skip * limit;
+
+        const BorrowerData = await Model.Borrower.find(criteria).sort({ createdAt: -1 });
+        return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.SUCCESS, BorrowerData);
+    } catch (error) {
+        console.log('err', error);
+        universalFunction.exceptionError(res);
+    }
+};
 
 async function register(req, res) {
     try {
