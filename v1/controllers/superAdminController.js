@@ -1107,7 +1107,7 @@ async function dashBoard(req, res) {
         if(totalAdminDetail.length>0){
             totalAdminDetail.map((obj)=>{
                
-                earningByAdmin.push({email:obj.email,borrower:obj.borrowers.length})
+                // earningByAdmin.push({email:obj.email,borrower:obj.borrowers.length})
                 if(obj.loans.length>0){
                     obj.loans.map((obj)=>{
                         if(obj.status=='pending'){
@@ -1116,7 +1116,7 @@ async function dashBoard(req, res) {
                         LoanAmount += obj.principleAmount
                     })
                 }
-                earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
+                // earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
                 pendingLoan= 0
                 LoanAmount = 0
                 if(obj.expanses.length>0){
@@ -1125,7 +1125,7 @@ async function dashBoard(req, res) {
                         expances += obj.price
                     })  
                 }
-                earningByAdmin.push({TotalExpanses :expances })
+                earningByAdmin.push({TotalExpanses :expances,email:obj.email,borrower:obj.borrowers.length })
             })
         }
         let loanAmount = 0
@@ -1135,7 +1135,7 @@ async function dashBoard(req, res) {
             })
         }
         // let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
-        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount,borrowers:totalAdminDetail,earningByAdmin:earningByAdmin})
+        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount,borrowers:totalAdminDetail,earningByAdmin:earningByAdmin,PendingLoan:pendingLoan,LoanAmount:LoanAmount})
     } catch (error) {
         console.log('error', error);
         universalFunction.exceptionError(res);
