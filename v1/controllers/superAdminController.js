@@ -1166,7 +1166,7 @@ async function dashBoard(req, res) {
 async function getExpenses(req, res) {
     try {
         req.body.adminId = req.admin._id
-        let ExpensesData = await  Model.Expenses.find({adminId:req.admin._id});
+        let ExpensesData = await  Model.Expances.find({adminId:req.admin._id});
 
         return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.FETCHED_SUCCESSFULLY, ExpensesData);
     } catch (error) {
@@ -1176,7 +1176,7 @@ async function getExpenses(req, res) {
 };
 async function getAllExpenses(req, res) {
     try {
-        let ExpensesData = await  Model.Expenses.find({}).populate('adminId');
+        let ExpensesData = await  Model.Expances.find({}).populate('adminId');
 
         return universalFunction.sendResponse(req, res, statusCode.SUCCESS, messages.FETCHED_SUCCESSFULLY, ExpensesData);
     } catch (error) {
