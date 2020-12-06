@@ -1061,6 +1061,19 @@ async function dashBoard(req, res) {
         const findBorrower = await Model.Borrower.find({})
         const findAdmin = await Model.Admin.find({})
         const findLoan = await Model.Loan.find({})
+        const totalAdminDetail = await Model.Admin.aggregate([
+            {
+                $match:{isDeleted:false}
+            },
+            {
+                $lookup:{
+                    from: "borrowers",
+                    localField: "_id",
+                    foreignField: "adminId",
+                    as: "borrowers"
+                }
+            }
+        ])
         let loanAmount = 0
         if(findLoan.length>0){
             findLoan.map((obj)=>{
@@ -1068,7 +1081,7 @@ async function dashBoard(req, res) {
             })
         }
         // let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
-        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount})
+        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount,borrowers:totalAdminDetail})
     } catch (error) {
         console.log('error', error);
         universalFunction.exceptionError(res);
