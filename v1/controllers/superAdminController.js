@@ -1109,14 +1109,14 @@ async function dashBoard(req, res) {
         if(totalAdminDetail.length>0){
             totalAdminDetail.map((obj)=>{
                 earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
-                if(obj.loans.length>0){
-                    obj.loans.map((obj)=>{
-                        if(obj.status=='pending'){
-                            pendingLoan += obj.principleAmount
-                        }
-                        LoanAmount += obj.principleAmount
-                    })
-                }
+                // if(obj.loans.length>0){
+                //     obj.loans.map((obj)=>{
+                //         if(obj.status=='pending'){
+                //             pendingLoan += obj.principleAmount
+                //         }
+                //         LoanAmount += obj.principleAmount
+                //     })
+                // }
                 earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
                 pendingLoan= 0
                 LoanAmount = 0
