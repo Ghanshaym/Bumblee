@@ -1072,7 +1072,33 @@ async function dashBoard(req, res) {
                     foreignField: "adminId",
                     as: "borrowers"
                 }
-            }
+            },
+            // {$unwind:{path: "$borrowers", preserveNullAndEmptyArrays: true}},
+            {
+                $lookup:{
+                    from: "borrowers",
+                    localField: "_id",
+                    foreignField: "adminId",
+                    as: "borrowers"
+                }
+            },
+            {
+                $lookup:{
+                    from: "loans",
+                    localField: "_id",
+                    foreignField: "adminId",
+                    as: "loans"
+                }
+            },
+            {
+                $lookup:{
+                    from: "expances",
+                    localField: "_id",
+                    foreignField: "adminId",
+                    as: "expanses"
+                }
+            },
+
         ])
         let loanAmount = 0
         if(findLoan.length>0){
