@@ -1107,7 +1107,7 @@ async function dashBoard(req, res) {
         if(totalAdminDetail.length>0){
             totalAdminDetail.map((obj)=>{
                 console.log("obj.email",obj.email);
-                earningByAdmin.push({email:obj.email})
+                earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
                 // earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
                 // if(obj.loans.length>0){
                 //     obj.loans.map((obj)=>{
