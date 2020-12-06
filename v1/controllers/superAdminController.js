@@ -1102,6 +1102,8 @@ async function dashBoard(req, res) {
         ])
         let  earningByAdmin = [] , admin , pendingLoan = 0 ,LoanAmount =0 , expances = 0
         console.log("totalAdminDetail",totalAdminDetail);
+        console.log("totalAdminDetail",totalAdminDetail.length);
+
         if(totalAdminDetail.length>0){
             totalAdminDetail.map((obj)=>{
                 earningByAdmin.push({email:obj.email,borrower:obj.Borrower.length})
