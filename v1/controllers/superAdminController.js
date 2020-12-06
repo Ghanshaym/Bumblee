@@ -1117,15 +1117,17 @@ async function dashBoard(req, res) {
                     })
                 }
                 // earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
-                pendingLoan= 0
-                LoanAmount = 0
+      
                 if(obj.expanses.length>0){
                     obj.expanses.map((obj)=>{
                        
                         expances += obj.price
                     })  
                 }
-                earningByAdmin.push({TotalExpanses :expances,email:obj.email,borrower:obj.borrowers.length })
+                earningByAdmin.push({TotalExpanses :expances,email:obj.email,borrower:obj.borrowers.length,PendingLoan:pendingLoan,LoanAmount:LoanAmount })
+                pendingLoan= 0
+                LoanAmount = 0
+                expances = 0
             })
         }
         let loanAmount = 0
@@ -1135,7 +1137,7 @@ async function dashBoard(req, res) {
             })
         }
         // let expences = await  Model.Expances.findOneAndUpdate({adminId:req.admin._id},req.body,{upsert:true,new:true})
-        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount,borrowers:totalAdminDetail,earningByAdmin:earningByAdmin,PendingLoan:pendingLoan,LoanAmount:LoanAmount})
+        res.json({statusCode:200,message:resMessages.APP_MESSAGES.EXPENSES_ADD_SUCESSFULLY,Borrower:findBorrower.length,Admin:findAdmin.length,LoanAmount : loanAmount,borrowers:totalAdminDetail,earningByAdmin:earningByAdmin})
     } catch (error) {
         console.log('error', error);
         universalFunction.exceptionError(res);
