@@ -1057,8 +1057,7 @@ async function addExpenses(req, res) {
 async function dashBoard(req, res) {
     try {
 
-        req.body.adminId = req.admin._id
-        console.log("dasd",req.admin._id);
+     
         const findBorrower = await Model.Borrower.find({})
         const findAdmin = await Model.Admin.find({})
         const findLoan = await Model.Loan.find({})
