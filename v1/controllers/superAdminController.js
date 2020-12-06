@@ -1117,16 +1117,16 @@ async function dashBoard(req, res) {
                 //         LoanAmount += obj.principleAmount
                 //     })
                 // }
-                earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
-                pendingLoan= 0
-                LoanAmount = 0
-                if(obj.expanses.length>0){
-                    obj.expanses.map((obj)=>{
+                // earningByAdmin.push({PendingLoan:pendingLoan,LoanAmount:LoanAmount})
+                // pendingLoan= 0
+                // LoanAmount = 0
+                // if(obj.expanses.length>0){
+                //     obj.expanses.map((obj)=>{
                        
-                        expances += obj.price
-                    })  
-                }
-                earningByAdmin.push({TotalExpanses :expances })
+                //         expances += obj.price
+                //     })  
+                // }
+                // earningByAdmin.push({TotalExpanses :expances })
             })
         }
         let loanAmount = 0
