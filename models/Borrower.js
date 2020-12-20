@@ -11,6 +11,38 @@ const BorrowerModel = new Schema({
     name: {
         type: String,index:true,default:''
     },
+    grantorName:{
+        type:String,
+        default:''
+    },
+    grantorAge:{
+        type:String,
+        default:''
+    },
+    grantorAddress:{
+        type:String,
+        default:''
+    },
+    grantorBussinessAddress:{
+        type:String,
+        default:''
+    },
+    grantorHomeAddress:{
+        type:String,
+        default:''
+    },
+    grantorMobileNo:{
+        type:String,
+        default:''
+    },
+    grantorAlternateMobileNumber:{
+        type:String,
+        default:''
+    },
+    grantorBussinessName:{
+        type:String,
+        default:''
+    },
     scheduleTime:{
         type:Number,
         default : 0.0
