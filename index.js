@@ -19,6 +19,10 @@ app.use('/api', route);
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.use(cors())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 app.use('/static', express.static(path.join(__dirname+'/uploads')));
 
 app.use(express.static((path.join(__dirname,"../server/swagger"))));
