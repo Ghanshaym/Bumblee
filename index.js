@@ -7,7 +7,7 @@ const connection = require('./connection/connect');
 const route = require('./route');
 const app = express();
 const morgan = require('morgan')
-const cors = require("cors");
+
 // const socket = require('../server/sockets/index');
 // const cronJob=require('../server/v1/cron/cronjobs');
 
