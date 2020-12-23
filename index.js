@@ -7,6 +7,7 @@ const connection = require('./connection/connect');
 const route = require('./route');
 const app = express();
 const morgan = require('morgan')
+const cors = require("cors");
 // const socket = require('../server/sockets/index');
 // const cronJob=require('../server/v1/cron/cronjobs');
 
@@ -17,7 +18,7 @@ app.use(cors());
 app.use('/api', route);
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
-
+app.use(cors())
 app.use('/static', express.static(path.join(__dirname+'/uploads')));
 
 app.use(express.static((path.join(__dirname,"../server/swagger"))));
